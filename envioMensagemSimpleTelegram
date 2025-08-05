@@ -1,0 +1,36 @@
+import requests
+
+########################################################
+#             Função Mensagem Telegram via Requests (Simples)
+########################################################
+
+TOKEN   = "7984241821:AAFpgyb1ku_xInUdBaStIr11r9fVwEZMSXE"
+CHAT_ID = "6525959310"
+
+def enviar_mensagem_telegram(token: str, chat_id: str, texto: str) -> dict:
+    """
+    Envia uma mensagem de texto via Telegram Bot API.
+    
+    :param token: Token do bot (string)
+    :param chat_id: ID do chat ou usuário (string ou int)
+    :param texto: Texto da mensagem (string)
+    :return: Resposta JSON da API como dict
+    """
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    payload = {
+        "chat_id": chat_id,
+        "text": texto
+    }
+    response = requests.post(url, data=payload)
+    return response.json()
+
+'''
+Exemplo de Envio de mensagem:
+mensangem_telegram = f"Olá, mundo! 🚀"
+resp = enviar_mensagem_telegram(TOKEN, CHAT_ID, mensangem_telegram)
+print(resp)
+'''
+#-----------------------------------------------------------------------------------
+
+mensangem_telegram = f"Olá, mundo! 🚀"
+resp = enviar_mensagem_telegram(TOKEN, CHAT_ID, mensangem_telegram)
